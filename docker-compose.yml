@@ -4,7 +4,11 @@ name: learnhouse-ce
 
 services:
   learnhouse-app:
-    image: ghcr.io/learnhouse/app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      pull: true
+    image: learnhouse-app-migrated:latest
     container_name: learnhouse-app
     restart: unless-stopped
     env_file:
