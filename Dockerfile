@@ -1,5 +1,10 @@
 FROM ghcr.io/learnhouse/app:latest
-COPY nginx-default.conf /etc/nginx/conf.d/default.conf
+# The base image's nginx is Alpine's (apk), which reads /etc/nginx/http.d/*.conf,
+# not Debian-style /etc/nginx/conf.d/*.conf. Copying here previously landed in a
+# path nginx doesn't fully include, which crashed nginx at startup with
+# "server" directive is not allowed here — matches upstream's own Dockerfile,
+# which copies its equivalent file to this same http.d path.
+COPY nginx-default.conf /etc/nginx/http.d/default.conf
 
 # Static legal pages served directly by nginx. The upstream OSS app has no
 # /terms, /privacy, or /contact routes of its own and its built-in links fall
