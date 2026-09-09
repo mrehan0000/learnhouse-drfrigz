@@ -1,4 +1,9 @@
-FROM ghcr.io/learnhouse/app:latest
+FROM ghcr.io/mrehan0000/learnhouse:dev
+# Custom-built image from our fork (mrehan0000/learnhouse, dev branch), which
+# adds per-course sequential progression gating on top of upstream. Built and
+# tagged locally on this server rather than pulled from a registry — see
+# mrehan0000/learnhouse for the actual application source.
+#
 # The base image's nginx is Alpine's (apk), which reads /etc/nginx/http.d/*.conf,
 # not Debian-style /etc/nginx/conf.d/*.conf. Copying here previously landed in a
 # path nginx doesn't fully include, which crashed nginx at startup with
