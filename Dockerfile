@@ -4,6 +4,15 @@ FROM ghcr.io/mrehan0000/learnhouse:dev
 # tagged locally on this server rather than pulled from a registry — see
 # mrehan0000/learnhouse for the actual application source.
 #
+# Coolify caches the built image by THIS repo's commit SHA, not by the
+# content of the FROM image -- it has no way to know the local `dev` tag
+# changed underneath it. So whenever the fork is rebuilt (`docker build -t
+# ghcr.io/mrehan0000/learnhouse:dev .` from the fork checkout), a commit must
+# also land here (even a no-op comment bump like this one, noting the fork
+# commit the local image was built from) or Coolify will silently reuse the
+# stale image and skip the rebuild entirely.
+# Base image last rebuilt from mrehan0000/learnhouse@18acd6d4.
+#
 # The base image's nginx is Alpine's (apk), which reads /etc/nginx/http.d/*.conf,
 # not Debian-style /etc/nginx/conf.d/*.conf. Copying here previously landed in a
 # path nginx doesn't fully include, which crashed nginx at startup with
