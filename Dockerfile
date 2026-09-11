@@ -11,7 +11,7 @@ FROM ghcr.io/mrehan0000/learnhouse:dev
 # also land here (even a no-op comment bump like this one, noting the fork
 # commit the local image was built from) or Coolify will silently reuse the
 # stale image and skip the rebuild entirely.
-# Base image last rebuilt from mrehan0000/learnhouse@18acd6d4.
+# Base image last rebuilt from mrehan0000/learnhouse@25ed75d8.
 #
 # The base image's nginx is Alpine's (apk), which reads /etc/nginx/http.d/*.conf,
 # not Debian-style /etc/nginx/conf.d/*.conf. Copying here previously landed in a
